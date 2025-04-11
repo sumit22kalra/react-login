@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import {BrowserRouter as Router, Routes, Route,Link} from 'react-router-dom';
-
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import axios from "axios";
 import Login from "./Login";
 import { AddCountry } from "./AddCountry";
+import { DisplayState } from "./DisplayState"; 
+import { CountryManagement } from "./CountryManagement";
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [user, setUser] = useState(null);
-
+  const [user, setUser] = useState(null); 
   // Function to fetch user details from verify_token.php
   const fetchUserDetails = async () => {
     if (!token) return;
@@ -18,7 +18,7 @@ function App() {
       });
 
       if (response.data.success) {
-        
+
         setUser({ id: response.data.user.user_id, name: response.data.user.user_name });
       } else {
         console.error("Token verification failed:", response.data.message);
@@ -34,23 +34,7 @@ function App() {
 
   return (
     <div>
-           
-           <Router>
-           
-
-
-            <div className='p-2 text-center'>
-            <Link to="/login">Login</Link> 
-            <Link to="/AddCountry">About</Link> 
-                <Routes> 
-                    <Route path="/AddCountry" element={<AddCountry />} />
-                    {token ? (null):(
-                    <Route path="/login" element={<Login setToken={setToken} />} />
-                  )}
-                </Routes>
-            </div>    
-            </Router>
-      
+       
       {token ? (
         user ? (
           <div>
@@ -63,6 +47,37 @@ function App() {
       ) : (
         null
       )}
+
+      <Router>
+
+     
+        <header> 
+        {token ? (
+           <>
+           <Link to="/AddCountry">Country</Link>
+           <Link to="/display-state">State</Link>
+           </>
+        ): ( 
+              <>
+              <Link to="/login">Login</Link>
+           <Link to="/AddCountry">Country</Link>
+           <Link to="/display-state">State</Link>
+           </>
+         
+
+        )}  
+        </header>
+        <Routes>
+          <Route path="/AddCountry" element={<AddCountry />} />
+          <Route path="/display-state" element={<DisplayState />} />
+          {token ? (null) : (
+            <Route path="/login" element={<Login setToken={setToken} />} />
+          )}
+        </Routes>
+
+      </Router>
+<CountryManagement />
+
     </div>
   );
 }

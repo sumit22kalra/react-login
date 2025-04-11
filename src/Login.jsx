@@ -28,26 +28,37 @@ const Login = ({ setToken }) => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
+ <> 
+   <form onSubmit={handleLogin}>
+    <div className="login-section">
+      <div className="login-wrapper">
+        <div className="logo-wrapper">
+        <img src='https://www.trivenigroup.com/svg/TEIL_Logo.svg'  className="logo img-fluid" />
+        </div>   
+       
         <input
           type="email"
+           className="form-control"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+      
         <input
           type="password"
+          className="form-control"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Login</button>
+       
+        <button type="submit" className="btn btn-primary">Login</button>
+        </div>
+        </div>
       </form>
-    </div>
+      </> 
   );
 };
 

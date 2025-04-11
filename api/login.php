@@ -9,7 +9,7 @@ use Firebase\JWT\Key;
 //header("Content-Type: application/json; charset=UTF-8");
 
 // Allow requests from localhost:5173 (React Vite)
-header("Access-Control-Allow-Origin: http://localhost:5174");
+header("Access-Control-Allow-Origin: http://localhost:5173");
 
 // Allow specific headers
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
