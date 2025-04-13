@@ -5,6 +5,7 @@ import Login from "./Login";
 import { AddCountry } from "./AddCountry";
 import { DisplayState } from "./DisplayState"; 
 import { CountryManagement } from "./CountryManagement";
+import SQLRunner from "./sql";
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(null); 
@@ -77,7 +78,7 @@ function App() {
 
       </Router>
 <CountryManagement />
-
+<SQLRunner />
     </div>
   );
 }
